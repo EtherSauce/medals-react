@@ -14,10 +14,9 @@ const { id, name, gold } = country;
   }
 
   return (
-    
-<div className="country">
+    <div className="country">
       <h3>{name}</h3>
-      <p>Gold: {gold}</p>
+      <p>Gold Medals: {gold}</p>
       <button
         type="button"
         onClick={() => onDelete?.(id)}

@@ -15,15 +15,18 @@ const handleDeleteCountry = (id) => {
   };
 
   return (
-    <div className="countries">
-      {countries.map((country) => (
-        <Country
-          key={country.id}
-          country={country}
-          onDelete={handleDeleteCountry}
-        />
-      ))}
-    </div>
+    <main className="app">
+
+      <section className="countries">
+        {countries.map((country) => (
+          <Country
+            key={country.id}
+            country={country}
+            onDelete={handleDeleteCountry}
+          />
+        ))}
+      </section>
+    </main>
   );
 }
 
