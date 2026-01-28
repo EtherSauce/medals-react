@@ -1,9 +1,10 @@
 import { useState } from "react";
 
-function Country() {
+function Country({ country, onDelete }) {
   
-const [name, setName] = useState("United States");
-const [gold, setGold] = useState(0);
+// const [name, setName] = useState("United States");
+// const [gold, setGold] = useState(0);
+const { id, name, gold } = country;
 
 
   function handleClick() {
@@ -13,11 +14,17 @@ const [gold, setGold] = useState(0);
   }
 
   return (
-    <div
-      className="country"
-      // onClick={handleClick}
-    >
-      {name} gold medals: {gold} <button className="btn" onClick={handleClick}>+</button>
+    
+<div className="country">
+      <h3>{name}</h3>
+      <p>Gold: {gold}</p>
+      <button
+        type="button"
+        onClick={() => onDelete?.(id)}
+        aria-label={`Delete ${name}`}
+      >
+        Delete
+      </button>
     </div>
   );
 }
