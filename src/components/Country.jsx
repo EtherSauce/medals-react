@@ -1,6 +1,7 @@
 import { useState } from "react";
+import Medal from "./Medal.jsx";
 
-function Country({ country, onDelete }) {
+function Country({ country, medals, onDelete }) {
   
 // const [name, setName] = useState("United States");
 // const [gold, setGold] = useState(0);
@@ -17,6 +18,11 @@ const { id, name, gold } = country;
     <div className="country">
       <h3>{name}</h3>
       <p>Gold Medals: {gold}</p>
+      <div className="medals">
+        {medals.map((medal) => (
+          <Medal key={medal.id} medal={medal} />
+        ))}
+      </div>
       <button
         type="button"
         onClick={() => onDelete?.(id)}

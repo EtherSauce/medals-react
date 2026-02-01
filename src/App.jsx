@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Country from "./components/Country.jsx";
 import "./App.css";
 
@@ -8,6 +8,13 @@ function App() {
     { id: 2, name: 'China', gold: 3 },
     { id: 3, name: 'France', gold: 0 },
   ]);
+  
+  const medals = useRef([
+    { id: 1, name: "gold" },
+    { id: 2, name: "silver" },
+    { id: 3, name: "bronze" },
+  ]);
+
 
   
 const handleDeleteCountry = (id) => {
@@ -22,6 +29,7 @@ const handleDeleteCountry = (id) => {
           <Country
             key={country.id}
             country={country}
+            medals={medals.current}
             onDelete={handleDeleteCountry}
           />
         ))}
