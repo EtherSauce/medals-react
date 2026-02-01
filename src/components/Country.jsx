@@ -16,20 +16,22 @@ const { id, name, gold } = country;
 
   return (
     <div className="country">
-      <h3>{name}</h3>
-      <p>Gold Medals: {gold}</p>
+      <div className="country-header">
+        <h3>{name}</h3>
+        <button
+          type="button"
+          onClick={() => onDelete?.(id)}
+          aria-label={`Delete ${name}`}
+        >
+          Delete
+        </button>
+      </div>
+      {/* <p>Gold Medals: {gold}</p> */}
       <div className="medals">
         {medals.map((medal) => (
           <Medal key={medal.id} medal={medal} />
         ))}
       </div>
-      <button
-        type="button"
-        onClick={() => onDelete?.(id)}
-        aria-label={`Delete ${name}`}
-      >
-        Delete
-      </button>
     </div>
   );
 }

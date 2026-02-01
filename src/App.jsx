@@ -10,9 +10,9 @@ function App() {
   ]);
   
   const medals = useRef([
-    { id: 1, name: "gold" },
-    { id: 2, name: "silver" },
-    { id: 3, name: "bronze" },
+    { id: 1, name: "gold Medals" },
+    { id: 2, name: "silver Medals" },
+    { id: 3, name: "bronze Medals" },
   ]);
 
 
