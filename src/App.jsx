@@ -1,13 +1,14 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import Country from "./components/Country.jsx";
 import "./App.css";
 
-function App() {  
+function App() {
   const [countries, setCountries] = useState([
-    { id: 1, name: 'United States', gold: 2 },
-    { id: 2, name: 'China', gold: 3 },
-    { id: 3, name: 'France', gold: 0 },
+    { id: 1, name: "United States", gold: 2, silver: 2, bronze: 3 },
+    { id: 2, name: "China",         gold: 3, silver: 1, bronze: 0 },
+    { id: 3, name: "France",        gold: 0, silver: 2, bronze: 2 },
   ]);
+
   
   const medals = useRef([
     { id: 1, name: "gold Medals" },
@@ -17,24 +18,56 @@ function App() {
 
 
   
-const handleDeleteCountry = (id) => {
+  const handleDeleteCountry = (id) => {
     setCountries(prev => prev.filter(c => c.id !== id));
   };
+  
+  const handleIncrement = (id, medal) => {
+    setCountries(prev =>
+      prev.map(c =>
+        c.id === id ? { ...c, [medal]: c[medal] + 1 } : c
+      )
+    );
+  };
+
+  const handleDecrement = (id, medal) => {
+    setCountries(prev =>
+      prev.map(c =>
+        c.id === id ? { ...c, [medal]: Math.max(0, c[medal] - 1) } : c
+      )
+    );
+  };
+
+const totals = useMemo(() => {
+    return countries.reduce(
+      (acc, c) => {
+        acc.gold   += c.gold;
+        acc.silver += c.silver;
+        acc.bronze += c.bronze;
+        return acc;
+      },
+      { gold: 0, silver: 0, bronze: 0 }
+    );
+  }, [countries]);
+
+  const grandTotal = totals.gold + totals.silver + totals.bronze;
 
   return (
-    <main className="app">
+    <div className="app">
+      <h1>Olympic Medals {grandTotal}</h1>
 
-      <section className="countries">
-        {countries.map((country) => (
+      <main>
+        {countries.map(country => (
           <Country
             key={country.id}
             country={country}
-            medals={medals.current}
+            onInc={handleIncrement}
+            onDec={handleDecrement}
             onDelete={handleDeleteCountry}
           />
         ))}
-      </section>
-    </main>
+      </main>
+    </div>
   );
 }
 

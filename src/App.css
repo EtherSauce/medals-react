@@ -2,16 +2,37 @@ html, body, #root {
   height: 100%;
 }
 
-.countries {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
+.app {
+  padding: 2rem;
+}
+
+.global-totals {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
   padding: 1rem;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+}
+
+.global-totals p {
+  margin: 0;
+}
+
+main {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
 }
 
 .country {
   font-size: 1rem;
-  width: fit-content;
+  min-width: 280px;
+  flex: 0 0 auto;
   padding: 1.5rem;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -40,4 +61,65 @@ html, body, #root {
   border-radius: 4px;
   cursor: pointer;
   margin-left: 0.5rem;
+}
+
+.btn-delete {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  color: white;
+  background-color: gray;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+
+.medal {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.label {
+  font-weight: 500;
+  min-width: 80px;
+}
+
+.count {
+  font-weight: bold;
+  min-width: 30px;
+}
+
+.controls {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.controls button {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.controls button:hover:not(:disabled) {
+  background-color: #e8e8e8;
+}
+
+.controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
