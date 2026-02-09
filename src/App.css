@@ -213,8 +213,12 @@ main {
 
 
 .dialog-buttons button:first-child:disabled {
-  background-color: #ccc;
+  background-color: lightgrey;
   cursor: not-allowed;
+}
+
+.dialog-buttons button:first-child:not(:disabled) {
+  background-color: grey;
 }
 
 .dialog-buttons button:last-child {
