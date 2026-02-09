@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useMemo } from "react";
 import Country from "./components/Country.jsx";
+import NewCountry from "./components/NewCountry.jsx";
 import "./App.css";
 
 function App() {
@@ -38,6 +39,14 @@ function App() {
     );
   };
 
+  const handleAddCountry = (name) => {
+    const newId = countries.length > 0 ? Math.max(...countries.map(c => c.id)) + 1 : 1;
+    setCountries(prev => [
+      ...prev,
+      { id: newId, name, gold: 0, silver: 0, bronze: 0 }
+    ]);
+  };
+
 const totals = useMemo(() => {
     return countries.reduce(
       (acc, c) => {
@@ -55,6 +64,8 @@ const totals = useMemo(() => {
   return (
     <div className="app">
       <h1>Olympic Medals {grandTotal}</h1>
+
+      <NewCountry onAddCountry={handleAddCountry} />
 
       <main>
         {countries.map(country => (

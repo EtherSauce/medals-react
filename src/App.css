@@ -123,3 +123,106 @@ main {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+#trigger {
+  position: fixed;
+  left: 0.8rem;
+  bottom: 0.8rem;
+  cursor: pointer;
+  z-index: 80;
+  transform: scale(80%, 80%);
+  transition: transform 150ms ease-in-out;
+  background: none;
+  border: none;
+  padding: 0;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#trigger:hover {
+  transform: rotate(90deg) scale(100%, 100%);
+}
+
+#trigger img {
+  width: 100%;
+  height: 100%;
+}
+
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.dialog {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 300px;
+}
+
+.dialog h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.dialog input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  margin-bottom: 1.5rem;
+}
+
+.dialog input:focus {
+  outline: none;
+  box-shadow: 0 0 2px grey;
+}
+
+.dialog-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.dialog-buttons button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.dialog-buttons button:first-child {
+  color: white;
+}
+
+
+.dialog-buttons button:first-child:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.dialog-buttons button:last-child {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.dialog-buttons button:last-child:hover {
+  background-color: #e0e0e0;
+}
