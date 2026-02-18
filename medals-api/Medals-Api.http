@@ -1,0 +1,24 @@
+@Medals_Api_HostAddress = http://localhost:5000
+
+### GET all countries
+GET {{Medals_Api_HostAddress}}/api/country
+Accept: application/json
+
+### GET specific country by ID
+GET {{Medals_Api_HostAddress}}/api/country/1
+Accept: application/json
+
+### POST - Add new country
+POST {{Medals_Api_HostAddress}}/api/country
+Content-Type: application/json
+
+{
+  "name": "Japan",
+  "gold": 27,
+  "silver": 14,
+  "bronze": 17
+}
+
+### DELETE country by ID
+DELETE {{Medals_Api_HostAddress}}/api/country/1
+Accept: application/json
