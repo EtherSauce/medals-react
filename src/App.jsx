@@ -4,11 +4,22 @@ import NewCountry from "./components/NewCountry.jsx";
 import "./App.css";
 
 function App() {
-  const [countries, setCountries] = useState([
-    { id: 1, name: "United States", gold: 2, silver: 2, bronze: 3 },
-    { id: 2, name: "China",         gold: 3, silver: 1, bronze: 0 },
-    { id: 3, name: "France",        gold: 0, silver: 2, bronze: 2 },
-  ]);
+  const [countries, setCountries] = useState([]);
+
+  // Fetch initial country/medal data from API
+  useEffect(() => {
+    fetch("https://medalsapi.azurewebsites.net/Api/country")
+      .then(res => {
+        if (!res.ok) throw new Error("Failed to fetch countries");
+        return res.json();
+      })
+      .then(data => {
+        setCountries(data);
+      })
+      .catch(err => {
+        console.error("Error fetching countries:", err);
+      });
+  }, []);
 
   
   const medals = useRef([
@@ -19,8 +30,16 @@ function App() {
 
 
   
-  const handleDeleteCountry = (id) => {
-    setCountries(prev => prev.filter(c => c.id !== id));
+  const handleDeleteCountry = async (id) => {
+    try {
+      const res = await fetch(`https://medalsapi.azurewebsites.net/Api/country/${id}`, {
+        method: "DELETE"
+      });
+      if (!res.ok) throw new Error("Failed to delete country");
+      setCountries(prev => prev.filter(c => c.id !== id));
+    } catch (err) {
+      console.error("Error deleting country:", err);
+    }
   };
   
   const handleIncrement = (id, medal) => {
@@ -39,12 +58,19 @@ function App() {
     );
   };
 
-  const handleAddCountry = (name) => {
-    const newId = countries.length > 0 ? Math.max(...countries.map(c => c.id)) + 1 : 1;
-    setCountries(prev => [
-      ...prev,
-      { id: newId, name, gold: 0, silver: 0, bronze: 0 }
-    ]);
+  const handleAddCountry = async (name) => {
+    try {
+      const res = await fetch("https://medalsapi.azurewebsites.net/Api/country", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name })
+      });
+      if (!res.ok) throw new Error("Failed to add country");
+      const newCountry = await res.json();
+      setCountries(prev => [...prev, newCountry]);
+    } catch (err) {
+      console.error("Error adding country:", err);
+    }
   };
 
 const totals = useMemo(() => {
