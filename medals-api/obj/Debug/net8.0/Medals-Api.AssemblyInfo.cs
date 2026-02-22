@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Medals-Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b8d5409c821e1323927ce15a978a3fcce11bac2f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f52f6a7dc22abbe67ee30ce6714a2bf1ddf01514")]
 [assembly: System.Reflection.AssemblyProductAttribute("Medals-Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Medals-Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
