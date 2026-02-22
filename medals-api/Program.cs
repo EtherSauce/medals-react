@@ -13,7 +13,6 @@ builder.Services.AddCors(options =>
         builder =>
         {
             builder
-                .AllowAnyOrigin()
                 .WithOrigins("https://ethersauce.github.io")
                 .AllowAnyMethod()
                 .AllowAnyHeader();
